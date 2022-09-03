@@ -1,4 +1,4 @@
-﻿function Get-iplist
+function Get-iplist
 {
     param ( [string]$IPaddress,$cidr)
     $actIP = $IPaddress.split(".")
@@ -11,7 +11,7 @@
     $temp1 = $actipint
     $temp2 = $actipint[3]
     $size = [Math]::pow(2,(32-$cidr))
-    for($i=$size;$i -ge 1;$i--)
+    for($i=($size-$actipint[3]);$i -ge 1;$i--)
       {
        $temp1[3]=$temp2
        $iplist+= $temp1 -join "."
@@ -35,9 +35,3 @@
        }
     return $iplist
 }
-
-$a = Get-iplist -IPaddress "192.168.1.0" -cidr 20
-
-
-
-
